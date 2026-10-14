@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block titulo %}Simulador de pago{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta formulario">
+    <h1>Simulador de pago</h1>
+
+    <div class="resumen">
+        <p><strong>Pedido:</strong> #{{ pedido.id }}</p>
+        <p><strong>Producto:</strong> {{ pedido.producto.nombre }}</p>
+        <p><strong>Cantidad:</strong> {{ pedido.cantidad }}</p>
+        <p><strong>Canal:</strong>
+            <span class="canal canal-{{ pedido.tipo|lower }}">{{ pedido.tipo }}</span>
+        </p>
+        <p class="total-a-pagar"><strong>Total a pagar:</strong>
+            ${{ "%.2f"|format(pedido.total) }}</p>
+    </div>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.metodo.label }}
+            {{ form.metodo() }}
+        </div>
+
+        <div class="campo">
+            {{ form.titular.label }}
+            {{ form.titular(placeholder="Como figura en la tarjeta") }}
+        </div>
+
+        <div class="campo">
+            {{ form.numero_tarjeta.label }}
+            {{ form.numero_tarjeta(placeholder="4111 1111 1111 1111") }}
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                {{ form.vencimiento.label }}
+                {{ form.vencimiento(placeholder="12/30") }}
+            </div>
+            <div class="campo">
+                {{ form.cvv.label }}
+                {{ form.cvv(placeholder="123") }}
+            </div>
+        </div>
+
+        <p class="nota">Pago simulado: no se realizan transacciones reales.</p>
+
+        <p>{{ form.submit(class="boton") }}</p>
+    </form>
+
+    <a href="{{ url_for('mis_pedidos') }}">Volver a mis pedidos</a>
+</section>
+{% endblock %}

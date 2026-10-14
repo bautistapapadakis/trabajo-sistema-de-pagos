@@ -1,0 +1,399 @@
+:root {
+    color-scheme: dark;
+    --color-primario: #8b5cf6;
+    --color-primario-oscuro: #7c3aed;
+    --color-peligro: #ef4444;
+    --color-texto: #ede9fe;
+    --color-suave: #a29db3;
+    --color-borde: #2e2440;
+    --color-fondo: #08060d;
+    --color-blanco: #140f1e;
+    --color-superficie: #1c1527;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 50% -20%, #1b1030 0%, var(--color-fondo) 55%) fixed;
+    color: var(--color-texto);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Cabecera ------------------------------------------------------------- */
+
+.cabecera {
+    background: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.cabecera .contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-texto);
+}
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.navegacion .usuario {
+    color: var(--color-suave);
+    font-size: 0.9rem;
+}
+
+/* Botones -------------------------------------------------------------- */
+
+.boton {
+    display: inline-block;
+    background: var(--color-primario);
+    color: var(--color-blanco) !important;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-primario);
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    transition: background 0.15s ease;
+}
+
+.boton:hover {
+    background: var(--color-primario-oscuro);
+}
+
+.boton-secundario {
+    background: transparent;
+    color: var(--color-primario) !important;
+}
+
+.boton-chico {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+.boton-peligro {
+    background: var(--color-peligro);
+    border-color: var(--color-peligro);
+}
+
+.boton-peligro:hover {
+    background: #b91c1c;
+}
+
+/* Tarjetas ------------------------------------------------------------- */
+
+.tarjeta {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hero {
+    text-align: center;
+}
+
+.acciones {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.encabezado-seccion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Formularios ---------------------------------------------------------- */
+
+.formulario {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.campo {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.campo label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: var(--color-superficie);
+    color: var(--color-texto);
+}
+
+.campo input::placeholder {
+    color: var(--color-suave);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+
+.campo small {
+    color: var(--color-suave);
+    font-size: 0.8rem;
+}
+
+.fila {
+    display: flex;
+    gap: 1rem;
+}
+
+.fila .campo {
+    flex: 1;
+}
+
+.error {
+    color: var(--color-peligro);
+    font-size: 0.85rem;
+}
+
+.nota {
+    color: var(--color-suave);
+    font-size: 0.85rem;
+}
+
+/* Tablas --------------------------------------------------------------- */
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+}
+
+.tabla th,
+.tabla td {
+    border: 1px solid var(--color-borde);
+    padding: 0.55rem 0.65rem;
+    text-align: left;
+}
+
+.tabla th {
+    background: var(--color-superficie);
+}
+
+.acciones-tabla {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.acciones-tabla form {
+    margin: 0;
+}
+
+/* Grilla de productos -------------------------------------------------- */
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.producto {
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.producto h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.5rem;
+}
+
+.producto .precio {
+    font-weight: 700;
+    color: var(--color-primario);
+    font-size: 1.1rem;
+}
+
+.producto .stock {
+    color: var(--color-suave);
+    font-size: 0.85rem;
+}
+
+/* Métricas ------------------------------------------------------------- */
+
+.metricas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.metrica {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    min-width: 140px;
+}
+
+.metrica .numero {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.metrica .etiqueta {
+    color: var(--color-suave);
+    font-size: 0.85rem;
+}
+
+/* Estados y canales ---------------------------------------------------- */
+
+.estado {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.estado-pendiente-de-pago {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+.estado-pagado {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+}
+
+.estado-cobrado {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+.estado-cancelado {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.canal {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.canal-b2c {
+    background: rgba(56, 189, 248, 0.15);
+    color: #7dd3fc;
+}
+
+.canal-b2b {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+}
+
+/* Alertas -------------------------------------------------------------- */
+
+.alerta {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+}
+
+.alerta-exito {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.alerta-error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Pago ----------------------------------------------------------------- */
+
+.resumen {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.resumen p {
+    margin: 0.25rem 0;
+}
+
+.total-a-pagar {
+    font-size: 1.15rem;
+    color: var(--color-primario);
+}
+
+/* Pie ------------------------------------------------------------------ */
+
+.pie {
+    color: var(--color-suave);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+}

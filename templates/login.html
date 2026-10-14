@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta formulario">
+    <h1>Iniciar sesión</h1>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.email.label }}
+            {{ form.email() }}
+            {% for error in form.email.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.password.label }}
+            {{ form.password() }}
+            {% for error in form.password.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <p>{{ form.submit(class="boton") }}</p>
+    </form>
+
+    <p>¿No tenés cuenta? <a href="{{ url_for('registro') }}">Registrate</a></p>
+</section>
+{% endblock %}

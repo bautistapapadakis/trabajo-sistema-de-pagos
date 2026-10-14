@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio - Simulador de Pago/Cobro{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta hero">
+    <h1>Simulador de Pago/Cobro</h1>
+    <p>
+        Aplicación web para simular el ciclo de venta en canales
+        <strong>B2C</strong> (consumidor final) y <strong>B2B</strong> (empresas):
+        gestión de productos, pedidos, pagos y cobros.
+    </p>
+
+    <div class="acciones">
+        <a class="boton" href="{{ url_for('registro') }}">Crear cuenta de cliente</a>
+        <a class="boton boton-secundario" href="{{ url_for('login') }}">Iniciar sesión</a>
+    </div>
+
+    <p class="nota">
+        Cuenta de administrador de prueba:
+        <code>admin@simulador.com</code> / <code>admin123</code>
+    </p>
+</section>
+{% endblock %}

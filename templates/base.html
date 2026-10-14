@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Simulador de Pago/Cobro{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="cabecera">
+        <div class="contenedor">
+            <a class="logo" href="{{ url_for('inicio') }}">Simulador de Pago/Cobro</a>
+            <nav class="navegacion">
+                {% if current_user.is_authenticated %}
+                    {% if current_user.rol == "admin" %}
+                        <a href="{{ url_for('admin') }}">Panel</a>
+                        <a href="{{ url_for('productos') }}">Productos</a>
+                        <a href="{{ url_for('admin_pedidos') }}">Pedidos</a>
+                    {% else %}
+                        <a href="{{ url_for('cliente') }}">Panel</a>
+                        <a href="{{ url_for('catalogo') }}">Catálogo</a>
+                        <a href="{{ url_for('mis_pedidos') }}">Mis pedidos</a>
+                    {% endif %}
+                    <span class="usuario">{{ current_user.nombre }}</span>
+                    <a class="boton boton-secundario" href="{{ url_for('logout') }}">Salir</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Iniciar sesión</a>
+                    <a class="boton" href="{{ url_for('registro') }}">Registrarse</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                {% for categoria, mensaje in mensajes %}
+                    <div class="alerta alerta-{{ categoria }}">{{ mensaje }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor">
+            TP 4 - B2B y B2C - Simulador de Pago/Cobro (Flask)
+        </div>
+    </footer>
+</body>
+</html>

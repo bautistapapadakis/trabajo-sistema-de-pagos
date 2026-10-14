@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar producto{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta formulario">
+    <h1>Editar producto #{{ producto.id }}</h1>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.nombre.label }}
+            {{ form.nombre() }}
+            {% for error in form.nombre.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.descripcion.label }}
+            {{ form.descripcion() }}
+        </div>
+
+        <div class="campo">
+            {{ form.precio.label }}
+            {{ form.precio() }}
+            {% for error in form.precio.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.stock.label }}
+            {{ form.stock() }}
+            {% for error in form.stock.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <p>{{ form.submit(class="boton") }}</p>
+    </form>
+
+    <a href="{{ url_for('productos') }}">Volver a productos</a>
+</section>
+{% endblock %}

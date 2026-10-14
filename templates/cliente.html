@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}Panel del cliente{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta">
+    <h1>¡Hola, {{ current_user.nombre }}!</h1>
+    <p>Desde acá podés ver el catálogo, crear pedidos y pagarlos.</p>
+
+    <div class="acciones">
+        <a class="boton" href="{{ url_for('catalogo') }}">Ver catálogo</a>
+        <a class="boton boton-secundario" href="{{ url_for('nuevo_pedido') }}">Crear pedido</a>
+        <a class="boton boton-secundario" href="{{ url_for('mis_pedidos') }}">Mis pedidos</a>
+    </div>
+</section>
+
+<section class="tarjeta">
+    <h2>Últimos pedidos</h2>
+
+    {% if pedidos %}
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Tipo</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ pedido.id }}</td>
+                        <td>{{ pedido.producto.nombre }}</td>
+                        <td>{{ pedido.cantidad }}</td>
+                        <td><span class="canal canal-{{ pedido.tipo|lower }}">{{ pedido.tipo }}</span></td>
+                        <td>${{ "%.2f"|format(pedido.total) }}</td>
+                        <td>
+                            <span class="estado estado-{{ pedido.estado|lower|replace(' ', '-') }}">
+                                {{ pedido.estado }}
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="{{ url_for('mis_pedidos') }}">Ver todos los pedidos</a></p>
+    {% else %}
+        <p>Todavía no realizaste pedidos.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block titulo %}Nuevo pedido{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta formulario">
+    <h1>Crear pedido</h1>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.producto.label }}
+            {{ form.producto() }}
+            {% for error in form.producto.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.cantidad.label }}
+            {{ form.cantidad() }}
+            {% for error in form.cantidad.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.tipo.label }}
+            {{ form.tipo() }}
+            <small>
+                El canal B2B (mayorista) requiere al menos 10 unidades y
+                aplica un 10% de descuento.
+            </small>
+        </div>
+
+        <p>{{ form.submit(class="boton") }}</p>
+    </form>
+
+    <a href="{{ url_for('cliente') }}">Volver al panel</a>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulo %}Catálogo{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta">
+    <h1>Catálogo de productos</h1>
+
+    {% if productos %}
+        <div class="grilla">
+            {% for producto in productos %}
+                <div class="producto">
+                    <h2>{{ producto.nombre }}</h2>
+                    <p>{{ producto.descripcion or "Sin descripción" }}</p>
+                    <p class="precio">${{ "%.2f"|format(producto.precio) }}</p>
+                    <p class="stock">Stock disponible: {{ producto.stock }}</p>
+                    <a class="boton boton-chico" href="{{ url_for('nuevo_pedido') }}">Pedir</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No hay productos disponibles por el momento.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('cliente') }}">Volver al panel</a></p>
+</section>
+{% endblock %}
